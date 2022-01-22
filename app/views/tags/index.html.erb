@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Tags</h1>
+
+<div id="tags">
+  <table>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.title %></td>
+        <td width="75px"><%= link_to "Show", tag %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= link_to "New tag", new_tag_path %>
