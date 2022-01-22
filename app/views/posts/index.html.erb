@@ -7,7 +7,11 @@
     <% @posts.each do |post| %>
       <tr>
         <td>
-          <%= post.content %> <%= link_to "Show", post %>
+          <%= post.content %>
+          <% unless post.tags.first.nil? %>
+            <mark><%= post.tags.first.title %></mark>
+          <% end %>
+          <%= link_to "Show", post %>
         </td>
       </tr>
     <% end %>

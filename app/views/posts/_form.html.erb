@@ -17,7 +17,7 @@
     <%= form.text_area :content %>
 
     <!-- Tag -->
-    <%= form.label :tag_ids, style: "display: block" %>
+    <%= form.label :tag_ids, "Tag", style: "display: block" %>
     <%=
       form.collection_select :tag_ids,
         Tag.all.order(title: :asc), :id, :title,
