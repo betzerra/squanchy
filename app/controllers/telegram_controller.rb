@@ -6,8 +6,9 @@ class TelegramController < Telegram::Bot::UpdatesController
     respond_with :message, text: "Hi"
   end
 
+  # Returns a Brizufrase (mostly Bunny quotes)
   def brizufrase!
-    tag = Tag.where(title: 'Bunny').first
+    tag = Tag.where(title: 'Brizu').first
     if tag.nil?
       respond_not_found
       return
@@ -23,9 +24,15 @@ class TelegramController < Telegram::Bot::UpdatesController
     respond_with :message, text: random_post.content
   end
 
+  # Returns anything but a Brizufrase
   def frase!
-    random_post = Post.all.sample(1).first
-    respond_with :message, text: random_post.content
+    random_post = Post
+      .where
+      .not(:id => Tag.where(title: 'Brizu').select(:post_id))
+      .sample(1)
+      .first
+
+      respond_with :message, text: random_post.content
   end
 
   private
