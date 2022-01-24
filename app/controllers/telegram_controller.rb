@@ -28,7 +28,7 @@ class TelegramController < Telegram::Bot::UpdatesController
   def frase!
     random_post = Post
       .where
-      .not(:id => Tag.where(title: 'Brizu').select(:post_id))
+      .not(:id => Tag.where(title: 'Brizu').select(:id))
       .sample(1)
       .first
 
