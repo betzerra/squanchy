@@ -26,9 +26,15 @@ class TelegramController < Telegram::Bot::UpdatesController
 
   # Returns anything but a Brizufrase
   def frase!
+    tag = Tag.where(title: 'Brizu').first
+    if tag.nil?
+      respond_not_found
+      return
+    end
+
     random_post = Post
       .where
-      .not(:id => Tag.where(title: 'Brizu').select(:id))
+      .not(:id => tag.posts.select(:id))
       .sample(1)
       .first
 
