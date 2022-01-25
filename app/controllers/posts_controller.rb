@@ -19,6 +19,30 @@ class PostsController < ApplicationController
   def edit
   end
 
+  # GET /posts/random.json
+  def random
+    random_post = Post.all.sample(1).first
+    render json: random_post
+  end
+
+  # GET /posts/random/tag.json
+  def random_tagged
+    tag_title = params[:tag]
+
+    if tag_title.nil?
+      raise ActionController::RoutingError.new('Not Found')
+    end
+
+    # make search case insensitive
+    tag = Tag.where('lower(title) = ?', tag_title.downcase).first
+    if tag.nil?
+      raise ActionController::RoutingError.new('Not Found')
+    end
+
+    random_post = tag.posts.all.sample(1).first
+    render json: random_post
+  end
+
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
