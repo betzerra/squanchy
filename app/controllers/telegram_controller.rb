@@ -41,6 +41,10 @@ class TelegramController < Telegram::Bot::UpdatesController
       respond_with :message, text: random_post.content
   end
 
+  def sztajnszrajber!
+    respond_with :message, text: Sztajnszrajber.phrase
+  end
+
   private
 
   def respond_not_found
