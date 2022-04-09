@@ -1,6 +1,11 @@
 require 'telegram/bot'
 
 Rails.application.routes.draw do
+  # home
+  controller :home do
+    get '', to: 'home#index', as: :home
+  end
+
   controller :posts do
     get '/posts/random' => :random
     get '/posts/random/:tag' => :random_tagged
