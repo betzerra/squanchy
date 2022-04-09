@@ -91,5 +91,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  routes.default_url_options = {host: 'squanchy.dokku.betzerra.dev', protocol: 'https'}
+  routes.default_url_options = {host: 'squanchy.apps.betzerra.dev', protocol: 'https'}
 end
